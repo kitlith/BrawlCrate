@@ -107,6 +107,29 @@ namespace BrawlLib.SSBBTypes
             }
         }
 
+        public string[] VariantNames
+        {
+            set
+            {
+                int offset = 0;
+                foreach (string s in value)
+                {
+                    int len = value.Length + 1;
+
+                    byte* dPtr = (byte*) Address + _variantNamesOffset + offset;
+                    fixed (char* sPtr = s)
+                    {
+                        for (int i = 0; i < len; i++)
+                        {
+                            *dPtr++ = (byte) sPtr[i];
+                        }
+                    }
+
+                    offset += len;
+                }
+            }
+        }
+
         public enum VarianceType : byte
         {
             Normal = 0,

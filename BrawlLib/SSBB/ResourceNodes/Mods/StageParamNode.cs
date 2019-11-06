@@ -2,8 +2,10 @@
 using BrawlLib.SSBBTypes;
 using System;
 using System.BrawlEx;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 
 namespace BrawlLib.SSBB.ResourceNodes
 {
@@ -138,24 +140,24 @@ namespace BrawlLib.SSBB.ResourceNodes
             }
         }
 
-        private string[] _variantNames = new string[] { };
+        private List<string> _variantNames = new List<string>();
 
         [Category("File Properties")]
         public string[] VariantNames
         {
-            get => _variantNames;
+            get => _variantNames.ToArray();
             set
             {
-                _variantNames = value;
+                _variantNames = value.ToList();
                 SignalPropertyChange();
             }
         }
 
         public override int OnCalculateSize(bool force)
         {
-            int size = STEX.FolderNameOffset + (_folderName.Length + 1).Align(4) + (_stageName.Length + 1).Align(4) +
-                       (_moduleName.Length + (_variantNames.Length > 0 ? 1 : 0)).Align(4);
-            if (_variantNames != null && _variantNames.Length > 0)
+            int size = STEX.FolderNameOffset + (_folderName.Length + 1) + (_stageName.Length + 1) +
+                       (_moduleName.Length + (_variantNames.Count > 0 ? 1 : 0));
+            if (_variantNames != null && _variantNames.Count > 0)
             {
                 foreach (string s in _variantNames)
                 {
@@ -163,7 +165,7 @@ namespace BrawlLib.SSBB.ResourceNodes
                 }
             }
 
-            return size;
+            return size.Align(0x10);
         }
 
         public override void OnRebuild(VoidPtr address, int length, bool force)
@@ -173,18 +175,19 @@ namespace BrawlLib.SSBB.ResourceNodes
             hdr->_soundBankID = _soundBankID;
             hdr->_effectBankID = _effectBankID;
             hdr->_trackListID = _trackListID;
-            hdr->_stageNameOffset = (ushort)(STEX.FolderNameOffset + (_folderName.Length + 1).Align(4));
-            hdr->_moduleNameOffset = (ushort)(hdr->_stageNameOffset + (_stageName.Length + 1).Align(4));
-            hdr->_variantNamesOffset = (ushort)(hdr->_moduleNameOffset + (_moduleName.Length + 1).Align(4));
+            hdr->_stageNameOffset = (ushort)(STEX.FolderNameOffset + (_folderName.Length + 1));
+            hdr->_moduleNameOffset = (ushort)(hdr->_stageNameOffset + (_stageName.Length + 1));
+            hdr->_variantNamesOffset = (ushort)(hdr->_moduleNameOffset + (_moduleName.Length + 1));
             hdr->_rgbaOverlay = _rgbaOverlay;
             hdr->_isFlat = (byte)(_isFlat ? 0x01 : 0x00);
             hdr->_isFixedCamera = (byte)(_isFixedCamera ? 0x01 : 0x00);
             hdr->_varianceType = _varianceType;
-            hdr->_varianceRange = (byte)(_variantNames?.Length ?? 0);
+            hdr->_varianceRange = (byte)(_variantNames?.Count ?? 0);
 
             hdr->FolderName = _folderName;
             hdr->StageName = _stageName;
             hdr->ModuleName = _moduleName;
+            hdr->VariantNames = VariantNames;
         }
 
         public override bool OnInitialize()
@@ -202,6 +205,16 @@ namespace BrawlLib.SSBB.ResourceNodes
             _moduleName = Header->ModuleName;
 
             _name = StageName;
+
+            if (Header->_varianceRange > 0)
+            {
+                bushort* addr = (bushort*) ((VoidPtr) Header + Header->_variantNamesOffset);
+                for (int i = 0; i < Header->_varianceRange; i++)
+                {
+                    _variantNames.Add(new string((sbyte*) addr));
+                    addr += VariantNames.Last().Length + 1;
+                }
+            }
 
             return false;
         }
