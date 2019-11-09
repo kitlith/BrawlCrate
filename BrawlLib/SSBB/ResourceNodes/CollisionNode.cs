@@ -1,5 +1,6 @@
-﻿using BrawlLib.OpenGL;
-using BrawlLib.SSBBTypes;
+﻿using BrawlLib.Internal;
+using BrawlLib.OpenGL;
+using BrawlLib.SSBB.Types;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;

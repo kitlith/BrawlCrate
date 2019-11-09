@@ -1,5 +1,9 @@
 ﻿using BrawlLib.Imaging;
-using BrawlLib.SSBBTypes;
+using BrawlLib.Internal;
+using BrawlLib.Internal.Audio;
+using BrawlLib.Internal.Windows.Forms;
+using BrawlLib.SSBB.Types;
+using BrawlLib.SSBB.Types.Animations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1174,7 +1178,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Browsable(false)] public float FrameRate => 60;
-        [Browsable(false)] public System.Audio.IAudioStream Audio => null;
+        [Browsable(false)] public IAudioStream Audio => null;
         [Browsable(false)] public uint Frequency => 0;
         [Browsable(false)] public int ImageCount => Children.Count;
 

@@ -1,7 +1,10 @@
 ﻿using BrawlLib.Imaging;
-using BrawlLib.IO;
-using BrawlLib.SSBBTypes;
-using Gif.Components;
+using BrawlLib.Imaging.GIF;
+using BrawlLib.Internal;
+using BrawlLib.Internal.Drawing;
+using BrawlLib.Internal.IO;
+using BrawlLib.Internal.Windows.Forms;
+using BrawlLib.SSBB.Types;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -707,7 +710,7 @@ namespace BrawlLib.SSBB.ResourceNodes
                                     //Draw the current image over the previous
                                     //This is because some GIFs use pixels of the previous frame
                                     //in order to compress the overall image data
-                                    using (Graphics graphics = Graphics.FromImage(prev))
+                                    using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(prev))
                                     {
                                         graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                                         graphics.CompositingQuality = CompositingQuality.HighQuality;

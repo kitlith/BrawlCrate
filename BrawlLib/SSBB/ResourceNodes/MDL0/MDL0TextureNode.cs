@@ -1,5 +1,7 @@
 ﻿using BrawlLib.Imaging;
+using BrawlLib.Internal.Drawing;
 using BrawlLib.OpenGL;
+using BrawlLib.SSBB.Types;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BrawlLib.SSBBTypes;
 
 namespace BrawlLib.SSBB.ResourceNodes
 {

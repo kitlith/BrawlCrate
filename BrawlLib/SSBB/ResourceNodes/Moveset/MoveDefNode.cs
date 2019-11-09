@@ -1,12 +1,14 @@
-﻿using System;
+﻿using BrawlLib.Internal;
+using BrawlLib.Internal.IO;
+using BrawlLib.SSBB.Types;
+using BrawlLib.Wii;
+using BrawlLib.Wii.Compression;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using BrawlLib.SSBBTypes;
 using System.ComponentModel;
 using System.IO;
-using BrawlLib.IO;
+using System.Linq;
 using System.Windows.Forms;
-using BrawlLib.Wii.Compression;
 
 namespace BrawlLib.SSBB.ResourceNodes
 {

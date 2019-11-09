@@ -1,7 +1,8 @@
-﻿using BrawlLib;
+﻿using BrawlCrate.UI;
+using BrawlLib.Internal.Windows.Controls.Model_Panel;
+using BrawlLib.Internal.Windows.Forms;
+using BrawlLib.SSBB;
 using BrawlLib.SSBB.ResourceNodes;
-using BrawlManagerLib;
-using IronPython.Modules;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

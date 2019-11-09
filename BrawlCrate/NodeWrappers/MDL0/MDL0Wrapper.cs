@@ -1,8 +1,10 @@
-﻿using BrawlLib;
+﻿using BrawlCrate.UI;
 using BrawlLib.Imaging;
+using BrawlLib.Internal;
+using BrawlLib.Internal.Windows.Forms;
 using BrawlLib.SSBB;
 using BrawlLib.SSBB.ResourceNodes;
-using BrawlLib.SSBBTypes;
+using BrawlLib.SSBB.Types;
 using BrawlLib.Wii.Models;
 using System;
 using System.ComponentModel;

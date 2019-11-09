@@ -1,6 +1,7 @@
-﻿using BrawlLib.Modeling;
+﻿using BrawlLib.Internal;
+using BrawlLib.Modeling;
 using BrawlLib.OpenGL;
-using BrawlLib.SSBBTypes;
+using BrawlLib.SSBB.Types;
 using BrawlLib.Wii.Models;
 using System;
 using System.Collections.Generic;

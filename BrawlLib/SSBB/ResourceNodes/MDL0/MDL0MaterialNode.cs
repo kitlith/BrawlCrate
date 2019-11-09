@@ -1,7 +1,10 @@
 ﻿using BrawlLib.Imaging;
-using BrawlLib.IO;
+using BrawlLib.Internal;
+using BrawlLib.Internal.IO;
+using BrawlLib.Internal.Windows.Controls.Model_Panel;
 using BrawlLib.Modeling;
-using BrawlLib.SSBBTypes;
+using BrawlLib.SSBB.Types;
+using BrawlLib.SSBB.Types.Animations;
 using BrawlLib.Wii.Animations;
 using BrawlLib.Wii.Graphics;
 using OpenTK.Graphics.OpenGL;

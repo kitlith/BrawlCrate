@@ -1,4 +1,5 @@
-﻿using BrawlLib.SSBBTypes;
+﻿using BrawlLib.Internal;
+using BrawlLib.SSBB.Types.Subspace.Hazards;
 using System;
 using System.ComponentModel;
 

@@ -1,4 +1,6 @@
-using BrawlLib.IO;
+using BrawlLib.Internal;
+using BrawlLib.Internal.IO;
+using BrawlLib.Wii;
 using BrawlLib.Wii.Compression;
 using System;
 using System.Collections.Generic;

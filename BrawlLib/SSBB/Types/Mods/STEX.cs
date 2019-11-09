@@ -1,5 +1,6 @@
 ﻿using BrawlLib.Imaging;
-using System;
+using BrawlLib.Internal;
+using BrawlLib.SSBB.Types;
 using System.Runtime.InteropServices;
 
 namespace BrawlLib.SSBBTypes

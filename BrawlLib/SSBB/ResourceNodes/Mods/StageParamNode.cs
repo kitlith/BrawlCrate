@@ -1,10 +1,8 @@
 ﻿using BrawlLib.Imaging;
+using BrawlLib.Internal;
 using BrawlLib.SSBBTypes;
-using System;
-using System.BrawlEx;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 
 namespace BrawlLib.SSBB.ResourceNodes

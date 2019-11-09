@@ -1,4 +1,4 @@
-﻿using BrawlLib.SSBBTypes;
+﻿using BrawlLib.SSBB.Types.Subspace.Animation;
 using System.ComponentModel;
 
 namespace BrawlLib.SSBB.ResourceNodes

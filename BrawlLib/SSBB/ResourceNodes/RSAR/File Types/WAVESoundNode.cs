@@ -1,7 +1,8 @@
-﻿using BrawlLib.IO;
-using BrawlLib.SSBBTypes;
-using System;
-using System.Audio;
+﻿using BrawlLib.Internal;
+using BrawlLib.Internal.Audio;
+using BrawlLib.Internal.IO;
+using BrawlLib.Internal.Windows.Forms;
+using BrawlLib.SSBB.Types.Audio;
 using System.IO;
 using System.Windows.Forms;
 

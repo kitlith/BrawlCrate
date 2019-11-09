@@ -1,28 +1,33 @@
-﻿using Be.Windows.Forms;
-using BrawlCrate.API;
+﻿using BrawlCrate.API;
+using BrawlCrate.BrawlManagers.CostumeManager;
+using BrawlCrate.BrawlManagers.SongManager;
+using BrawlCrate.BrawlManagers.StageManager;
 using BrawlCrate.ExternalInterfacing;
 using BrawlCrate.NodeWrappers;
 using BrawlCrate.Properties;
-using BrawlCrate.UI;
-using BrawlLib;
+using BrawlCrate.UI.Model_Previewer.ModelEditControl;
 using BrawlLib.Imaging;
+using BrawlLib.Internal;
+using BrawlLib.Internal.Audio;
+using BrawlLib.Internal.Windows.Controls;
+using BrawlLib.Internal.Windows.Controls.Hex_Editor;
+using BrawlLib.Internal.Windows.Controls.Model_Panel;
+using BrawlLib.Internal.Windows.Forms;
+using BrawlLib.Internal.Windows.Forms.Moveset;
 using BrawlLib.Modeling;
 using BrawlLib.OpenGL;
 using BrawlLib.SSBB;
 using BrawlLib.SSBB.ResourceNodes;
-using IronPython.Runtime;
 using System;
-using System.Audio;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
-namespace BrawlCrate
+namespace BrawlCrate.UI
 {
     public class MainForm : Form
     {
@@ -1283,7 +1288,7 @@ namespace BrawlCrate
 
         private void CostumeManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CostumeManager.CostumeManagerForm m = new CostumeManager.CostumeManagerForm();
+            CostumeManagerForm m = new CostumeManagerForm();
             m.FormClosed += UpdateDiscordRPC;
             m.Show();
             UpdateDiscordRPC(null, null);
@@ -1291,7 +1296,7 @@ namespace BrawlCrate
 
         private void SongManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SongManager.SongManagerForm m = new SongManager.SongManagerForm(null, true, true, false);
+            SongManagerForm m = new SongManagerForm(null, true, true, false);
             m.FormClosed += UpdateDiscordRPC;
             m.Show();
             UpdateDiscordRPC(null, null);
@@ -1299,7 +1304,7 @@ namespace BrawlCrate
 
         private void StageManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StageManager.StageManagerForm m = new StageManager.StageManagerForm(null, true);
+            StageManagerForm m = new StageManagerForm(null, true);
             m.FormClosed += UpdateDiscordRPC;
             m.Show();
             UpdateDiscordRPC(null, null);
@@ -1487,10 +1492,10 @@ namespace BrawlCrate
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ModelPanelViewport modelPanelViewport1 = new System.Windows.Forms.ModelPanelViewport();
+            ModelPanelViewport modelPanelViewport1 = new ModelPanelViewport();
             BrawlLib.OpenGL.GLCamera glCamera1 = new BrawlLib.OpenGL.GLCamera();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.resourceTree = new BrawlCrate.ResourceTree();
+            this.resourceTree = new ResourceTree();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1532,34 +1537,37 @@ namespace BrawlCrate
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.hexBox1 = new Be.Windows.Forms.HexBox();
-            this.mdL0ObjectControl1 = new System.Windows.Forms.MDL0ObjectControl();
-            this.ppcDisassembler1 = new System.Windows.Forms.PPCDisassembler();
-            this.texCoordControl1 = new System.Windows.Forms.TexCoordControl();
-            this.attributeGrid1 = new System.Windows.Forms.MultipleInterpretationAttributeGrid();
-            this.videoPlaybackPanel1 = new System.Windows.Forms.VideoPlaybackPanel();
-            this.modelPanel1 = new System.Windows.Forms.ModelPanel();
-            this.previewPanel2 = new System.Windows.Forms.PreviewPanel();
-            this.scN0FogEditControl1 = new System.Windows.Forms.SCN0FogEditControl();
-            this.scN0LightEditControl1 = new System.Windows.Forms.SCN0LightEditControl();
-            this.scN0CameraEditControl1 = new System.Windows.Forms.SCN0CameraEditControl();
-            this.animEditControl = new System.Windows.Forms.AnimEditControl();
-            this.shpAnimEditControl = new System.Windows.Forms.ShpAnimEditControl();
-            this.texAnimEditControl = new System.Windows.Forms.TexAnimEditControl();
-            this.audioPlaybackPanel1 = new System.Windows.Forms.AudioPlaybackPanel();
-            this.visEditor = new System.Windows.Forms.VisEditor();
-            this.clrControl = new System.Windows.Forms.CLRControl();
-            this.rsarGroupEditor = new System.Windows.Forms.RSARGroupEditor();
-            this.eventDescription1 = new System.Windows.Forms.EventDescription();
-            this.attributeControl = new System.Windows.Forms.AttributeGrid2();
-            this.articleAttributeGrid = new System.Windows.Forms.ArticleAttributeGrid();
-            this.movesetEditor1 = new System.Windows.Forms.ScriptEditor();
-            this.offsetEditor1 = new System.Windows.Forms.OffsetEditor();
-            this.soundPackControl1 = new System.Windows.Forms.SoundPackControl();
-            this.msBinEditor1 = new System.Windows.Forms.MSBinEditor();
             this.moddedDataTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sTEXParamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.hexBox1 = new HexBox();
+            this.mdL0ObjectControl1 = new MDL0ObjectControl();
+            this.ppcDisassembler1 = new PPCDisassembler();
+            this.texCoordControl1 = new TexCoordControl();
+            this.attributeGrid1 = new MultipleInterpretationAttributeGrid();
+            this.videoPlaybackPanel1 = new VideoPlaybackPanel();
+            this.modelPanel1 = new ModelPanel();
+            this.previewPanel2 = new PreviewPanel();
+            this.scN0FogEditControl1 = new SCN0FogEditControl();
+            this.scN0LightEditControl1 = new SCN0LightEditControl();
+            this.scN0CameraEditControl1 = new SCN0CameraEditControl();
+            this.animEditControl = new AnimEditControl();
+            this.shpAnimEditControl = new ShpAnimEditControl();
+            this.texAnimEditControl = new TexAnimEditControl();
+            this.audioPlaybackPanel1 = new AudioPlaybackPanel();
+            this.visEditor = new VisEditor();
+            this.clrControl = new CLRControl();
+            this.rsarGroupEditor = new RSARGroupEditor();
+            this.soundPackControl1 = new SoundPackControl();
+            this.msBinEditor1 = new MSBinEditor();
+
+
+            this.eventDescription1 = new EventDescription();
+            this.attributeControl = new AttributeGrid2();
+            this.articleAttributeGrid = new ArticleAttributeGrid();
+            this.offsetEditor1 = new OffsetEditor();
+            this.movesetEditor1 = new ScriptEditor();
+
+            ((System.ComponentModel.ISupportInitialize) (this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -2148,7 +2156,6 @@ namespace BrawlCrate
             this.audioPlaybackPanel1.TabIndex = 4;
             this.audioPlaybackPanel1.TargetStreams = null;
             this.audioPlaybackPanel1.Visible = false;
-            this.audioPlaybackPanel1.Volume = null;
             // 
             // visEditor
             // 

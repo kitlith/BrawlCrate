@@ -1,7 +1,11 @@
-﻿using BrawlLib.IO;
-using BrawlLib.Modeling;
-using BrawlLib.SSBBTypes;
+﻿using BrawlLib.Internal;
+using BrawlLib.Internal.IO;
+using BrawlLib.Internal.Windows.Forms;
+using BrawlLib.Modeling.Collada;
+using BrawlLib.SSBB.Types;
+using BrawlLib.SSBB.Types.Animations;
 using BrawlLib.Wii.Animations;
+using BrawlLib.Wii.Models;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -895,6 +899,9 @@ namespace BrawlLib.SSBB.ResourceNodes
         [Browsable(false)] public int FrameCount => Keyframes.FrameLimit;
 
         internal KeyframeCollection _keyframes;
+
+        [DisplayName("Uncompressed Size (Bytes)")]
+        public override uint UncompressedSize => (uint)(AnimationConverter.CalculateCHR0Size(Keyframes, out _, out _) + _entryLen);
 
         [Browsable(false)]
         public KeyframeCollection Keyframes

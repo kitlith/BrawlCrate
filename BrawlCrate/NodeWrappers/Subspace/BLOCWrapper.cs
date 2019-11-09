@@ -1,4 +1,5 @@
-﻿using BrawlLib.SSBB.ResourceNodes;
+﻿using BrawlLib.SSBB;
+using BrawlLib.SSBB.ResourceNodes;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -122,7 +123,7 @@ namespace BrawlCrate.NodeWrappers
 
         #endregion
 
-        public override string ExportFilter => BrawlLib.FileFilters.BLOC;
+        public override string ExportFilter => FileFilters.BLOC;
 
         public BLOCWrapper()
         {

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BrawlLib.SSBBTypes;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
+﻿using BrawlLib.Internal;
+using BrawlLib.SSBB.Types;
 using OpenTK.Graphics.OpenGL;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace BrawlLib.SSBB.ResourceNodes
 {

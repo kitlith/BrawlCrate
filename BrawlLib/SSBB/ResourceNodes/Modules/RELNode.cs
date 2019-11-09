@@ -1,10 +1,11 @@
-﻿using BrawlLib.SSBBTypes;
+﻿using BrawlLib.Internal;
+using BrawlLib.Internal.PowerPCAssembly;
+using BrawlLib.SSBB.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.PowerPcAssembly;
 using System.Text;
 using System.Windows.Forms;
 

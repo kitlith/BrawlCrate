@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BrawlLib.Internal;
+using BrawlLib.Internal.Windows.Controls;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
-using System.Windows.Forms;
 
 namespace BrawlLib.Imaging
 {

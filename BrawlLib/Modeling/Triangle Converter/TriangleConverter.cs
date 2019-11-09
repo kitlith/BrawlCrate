@@ -1,4 +1,4 @@
-﻿using System;
+﻿using BrawlLib.Internal;
 using System.Collections.Generic;
 using System.Linq;
 
