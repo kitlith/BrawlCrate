@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>Updater</AssemblyName>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyTitle>BrawlCrate updater</AssemblyTitle>
+    <AssemblyTitle>BrawlCrate Updater</AssemblyTitle>
     <Company>BrawlCrate</Company>
     <Product>BrawlCrate</Product>
     <Description>Simple application that updates a BrawlCrate installation</Description>
@@ -91,11 +91,11 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Updater.Program</StartupObject>
-    <AssemblyVersion>0.30.0.4</AssemblyVersion>
+    <AssemblyVersion>0.30.1.1</AssemblyVersion>
     <Authors>soopercool101, Sammi Husky</Authors>
     <PackageId>BrawlCrate Updater</PackageId>
-    <FileVersion>0.30.0.4</FileVersion>
-    <Version>30.0.4</Version>
+    <FileVersion>0.30.1.1</FileVersion>
+    <Version>30.1.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
